@@ -86,7 +86,7 @@ print ($project['data_5'] !== null) ? "<span style='color: lime; text-shadow: 0 
 
 <?php
 //zbierz pliki
-$folder = "/safe/".$_GET['p'];
+$folder = "/safe/projects/".$_GET['p'];
 if(!is_dir($_SERVER['DOCUMENT_ROOT'].$folder)){ print "<img src='/interface/wykrzyknik.svg' class=achtung alt='warning'>Projekt nie posiada swojego repozytorium w Sejfie."; }
 else{
     $files = scandir($_SERVER['DOCUMENT_ROOT'].$folder);

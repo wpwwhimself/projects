@@ -45,8 +45,8 @@ if(isset($_POST['n_submit'])){
         $heraldictext .= ($paid != "null") ? ". Wklepano od razu jako opłacony quest." : ". Wklepano od razu jako quest.";
         
         //dodaj folder do sejfu
-        mkdir($_SERVER['DOCUMENT_ROOT']."/safe/".$_POST['n_id']);
-        chmod($_SERVER['DOCUMENT_ROOT']."/safe/".$_POST['n_id'], 0751);
+        mkdir($_SERVER['DOCUMENT_ROOT']."/safe/projects/".$_POST['n_id']);
+        chmod($_SERVER['DOCUMENT_ROOT']."/safe/projects/".$_POST['n_id'], 0751);
         $heraldictext .= " Dodano także katalog.";
     }
     header("Location: http://projects.wpww.pl/archmage.php?e=".$_POST['n_id']);
@@ -216,7 +216,7 @@ if($_GET['c'] == "clear"){
     
     //usuń folder
     foreach(explode(",", $_GET['cp']) as $x => $id){
-        $target = $_SERVER['DOCUMENT_ROOT']."/safe/".$id;
+        $target = $_SERVER['DOCUMENT_ROOT']."/safe/projects/".$id;
         $files = scandir($target);
         for($i=2; $i<count($files); $i++){
             unlink($target."/".$files[$i]);
@@ -509,9 +509,10 @@ function printQuest($id, $cont){
     for($j = 2; $j<=5; $j++){ $data[$j-1] = (gettype($cont['data_'.$j]) != 'object') ? "null" : date_diff($today, $cont['data_'.$j])->format('%a'); }
     
     //auto-czyszczenie przeszłości
-    if(min($data) >= $_OPTIONS['deadline'] && ($cont['link'] !== null && substr($cont['link'], 0, 7) !== "<iframe") && $data[3] != "null" && $data[4] != "null")
+    if(min($data) >= $_OPTIONS['deadline'] && ($cont['link'] !== null && substr($cont['link'], 0, 7) !== "<iframe") && $data[3] != "null" && $data[4] != "null"){
         $clearthepast[] = $id;
         //print "<script>window.location = 'http://projects.wpww.pl/archmage.php?c=clear&cp=$id';</script>";
+    }
 
     //przypuszczacz mailowy
     $mailassume = null;
