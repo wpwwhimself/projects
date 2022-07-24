@@ -82,7 +82,7 @@ print ($project['data_5'] !== null) ? "<span style='color: lime; text-shadow: 0 
     "<span style='color: #f6d366; font-weight: normal;' title='Cena projektu'>".$project['cena']." zł</span>";
 ?>
 </h3>
-<?php echo ($project['zyczenia'] != null) ? "<p class='zyczenia'><strong>Życzenia dotyczące projektu:</strong> ".$project['zyczenia']."</p>" : ""; ?>
+<?php echo ($project['zyczenia'] != null) ? "<p class='zyczenia'><strong>Życzenia dotyczące projektu:</strong> ".nl2br($project['zyczenia'])."</p>" : ""; ?>
 
 <?php
 //zbierz pliki
