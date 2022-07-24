@@ -45,8 +45,8 @@ if(isset($_POST['n_submit'])){
         $heraldictext .= ($paid != "null") ? ". Wklepano od razu jako opłacony quest." : ". Wklepano od razu jako quest.";
         
         //dodaj folder do sejfu
-        mkdir($_SERVER['DOCUMENT_ROOT']."/safe/projects/".$_POST['n_id']);
-        chmod($_SERVER['DOCUMENT_ROOT']."/safe/projects/".$_POST['n_id'], 0751);
+        mkdir($_SERVER['DOCUMENT_ROOT']."/safe/".$_POST['n_id']);
+        chmod($_SERVER['DOCUMENT_ROOT']."/safe/".$_POST['n_id'], 0751);
         $heraldictext .= " Dodano także katalog.";
     }
     header("Location: http://projects.wpww.pl/archmage.php?e=".$_POST['n_id']);
@@ -216,7 +216,7 @@ if($_GET['c'] == "clear"){
     
     //usuń folder
     foreach(explode(",", $_GET['cp']) as $x => $id){
-        $target = $_SERVER['DOCUMENT_ROOT']."/safe/projects/".$id;
+        $target = $_SERVER['DOCUMENT_ROOT']."/safe/".$id;
         $files = scandir($target);
         for($i=2; $i<count($files); $i++){
             unlink($target."/".$files[$i]);
